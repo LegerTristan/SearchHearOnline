@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class IARemi : FSM
 {
-
+    [SerializeField] SightComponent sight = null;
+    public SightComponent Sight => sight;
 
     protected override void InitFSM()
     {

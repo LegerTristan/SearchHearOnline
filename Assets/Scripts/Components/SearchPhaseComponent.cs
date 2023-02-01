@@ -7,6 +7,7 @@ public class SearchPhaseComponent : MonoBehaviour
     [SerializeField] List<Phase> allPhases;
     int currentPhase = -1;
 
+    Vector3 saveFirstPosition;
     Vector3 test;
 
     Vector3 lastPlayerPosition = Vector3.zero;
@@ -20,18 +21,27 @@ public class SearchPhaseComponent : MonoBehaviour
     public void InscreasePhase()
     {
         currentPhase++;
-        currentPhase = currentPhase >= allPhases.Count ? 0 : currentPhase;
+        if(currentPhase >= allPhases.Count)
+        {
+            currentPhase = 0;
+            lastPlayerPosition = saveFirstPosition;
+        }
+        
     }
 
     public void DecreasePhase()
     {
         currentPhase--;
-        currentPhase = currentPhase < 0 ? 0 : currentPhase;
+        if(currentPhase <0)
+        {
+            currentPhase = 0;
+
+        }
     }
 
     public void ResetPhases()
     {
-        currentPhase = 0;
+        currentPhase = -1;
     }
 
     public void SetLastPosition(Vector3 _pos)
@@ -50,19 +60,19 @@ public class SearchPhaseComponent : MonoBehaviour
         if (isFirstTime)
         {
             isFirstTime = false;
-            lastPlayerPosition = player.position;
+            lastPlayerPosition = PlayerManager.Instance.GetPlayer.transform.position;
+            saveFirstPosition = lastPlayerPosition;
         }
         return GenerateRandomPointInCircle();
     }
 
     Vector3 GenerateRandomPointInCircle()
     {
-
-        float _angle = Random.Range(0, 360);
-        Debug.Log(_angle);
-        float _x = Mathf.Cos(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
-        float _y = Mathf.Sin(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
-        test = lastPlayerPosition + new Vector3(_x, 0, _y);
+            float _angle = Random.Range(0, 360);
+            Debug.Log(_angle);
+            float _x = Mathf.Cos(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
+            float _y = Mathf.Sin(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
+            test = lastPlayerPosition + new Vector3(_x, 0, _y);
         Debug.Log(test);
         return lastPlayerPosition + new Vector3(_x, 0, _y);
     }

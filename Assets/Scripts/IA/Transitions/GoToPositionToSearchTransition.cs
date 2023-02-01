@@ -10,8 +10,6 @@ public class GoToPositionToSearchTransition : Transition
 
     public override void CallNext()
     {
-
-        Debug.Log("CallNext");
         owner.SetNext<SearchState>();
     }
 

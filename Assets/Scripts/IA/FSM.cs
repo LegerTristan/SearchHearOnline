@@ -1,10 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class FSM : MonoBehaviour
 {
     protected State currentState = null;
 
-    void Start() => InitFSM();
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(0.1f);
+        InitFSM();
+    }
 
     void Update() => UpdateFSM();
 
