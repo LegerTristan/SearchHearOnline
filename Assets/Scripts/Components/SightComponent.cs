@@ -100,7 +100,6 @@ public class SightComponent : MonoBehaviour
     {
         if(_playerInSight)
         {
-            Debug.Log($"PlayerInSight ");
             bool _isHidden = _obstacleInSight && IsHidden(_hitPlayer.distance, _hitObstacle.distance);
             _debugColor = _isHidden ? Color.yellow : Color.green;
             _range = _isHidden ? _hitObstacle.distance : _hitPlayer.distance; 

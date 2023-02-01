@@ -9,14 +9,12 @@ public class SearchToChaseTransition : Transition
     public SearchToChaseTransition(FSM _owner) : base(_owner)
     {
         sightComp = owner.GetComponent<SightComponent>();
-        Debug.Log($"SightComp : {sightComp.name}");
     }
 
     public override bool IsTransitionValid
     {
         get
         {
-            Debug.Log($"SightComp : {sightComp.PlayerInSight}");
             return sightComp ? sightComp.PlayerInSight : false;
         }
     }
