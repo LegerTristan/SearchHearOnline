@@ -6,7 +6,10 @@ public abstract class FSM : MonoBehaviour
 
     protected abstract void InitFSM();
 
-    protected abstract void UpdateFSM();
+    protected virtual void UpdateFSM()
+    {
+        currentState?.Update();
+    }
 
     protected abstract void StopFSM();
 

@@ -6,11 +6,29 @@ public abstract class State
 {
     protected FSM owner = null;
 
-    public abstract void Enter(FSM _owner);
+    protected List<Transition> transitions = new List<Transition>();
 
-    public abstract void CheckTransitions();
+    public virtual void Enter(FSM _owner)
+    {
+        owner = _owner;
+        InitTransitions();
+    }
 
-    public abstract void Update();
+    protected abstract void InitTransitions();
+
+    void CheckTransitions()
+    {
+        for(int i  = 0; i < transitions.Count; ++i)
+        {
+            if (transitions[i].IsTransitionValid)
+                transitions[i].CallNext();
+        }
+    }
+
+    public virtual void Update()
+    {
+        CheckTransitions();
+    }
 
     public abstract void Exit();
 
