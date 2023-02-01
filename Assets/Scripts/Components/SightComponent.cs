@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -53,7 +51,6 @@ public class SightComponent : MonoBehaviour
         RaycastHit _hitPlayer, _hitObstacle;
         Color _debugColor = Color.white;
         float _range = 1f;
-        bool _wasPlayerHit = false;
         PlayerInSight = false;
         for (int i = 0; i < viewAngle; ++i)
         {
@@ -88,7 +85,7 @@ public class SightComponent : MonoBehaviour
         oscillation = oscillation < -1f ? -1f : oscillation;
 
         if (isOscillationIncreasing)
-            isOscillationIncreasing = oscillation <= 1.0f;
+            isOscillationIncreasing = oscillation < 1.0f;
         else
             isOscillationIncreasing = oscillation <= -1.0f;
     }
