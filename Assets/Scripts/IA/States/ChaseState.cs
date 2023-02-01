@@ -5,7 +5,10 @@ using UnityEngine;
 public class ChaseState : State
 {
     protected override void InitTransitions()
-    {
+    { 
+         
+
+
     }
 
     public override void DebugState()
@@ -18,5 +21,6 @@ public class ChaseState : State
 
     public override void Exit()
     {
+
     }
 }
