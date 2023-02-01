@@ -8,7 +8,7 @@ public class SearchToChaseTransition : Transition
 
     public SearchToChaseTransition(FSM _owner) : base(_owner)
     {
-        sightComp = owner.GetComponent<SightComponent>();
+        sightComp = ((IARemi)owner).Sight;
     }
 
     public override bool IsTransitionValid

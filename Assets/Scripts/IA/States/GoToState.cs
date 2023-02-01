@@ -12,7 +12,10 @@ public class GoToState : State
         _search.InscreasePhase();
         _search.SetTargetMoveTo();
         GoToPositionToSearchTransition _transi = new GoToPositionToSearchTransition(owner);
+        SearchToChaseTransition _chaseTransi = new SearchToChaseTransition(owner);
+        transitions.Add(_chaseTransi);
         transitions.Add(_transi);
+
     }
     
     public override void DebugState()
