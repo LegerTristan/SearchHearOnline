@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SearchState : State
 {
     protected override void InitTransitions()
     {
+        SearchToChaseTransition _searchToChase = new SearchToChaseTransition(owner);
+        transitions.Add(_searchToChase);
+
+        SearchToGoToTransition _searchToGoTo = new SearchToGoToTransition(owner);
+        transitions.Add(_searchToGoTo);
     }
 
     public override void DebugState()

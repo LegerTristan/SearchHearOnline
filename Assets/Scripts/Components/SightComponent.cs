@@ -6,7 +6,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class SightComponent : MonoBehaviour
 {
-    public event Action<bool> OnDetectPlayer = null;
+    //public event Action<bool> OnDetectPlayer = null;
 
     [SerializeField]
     LayerMask playerLayer = new LayerMask(), obstacleLayer = new LayerMask();
@@ -27,6 +27,8 @@ public class SightComponent : MonoBehaviour
 
     [SerializeField]
     bool oscillate = true, isOscillationIncreasing = true;
+
+    public bool PlayerInSight { get; private set; } = false;
 
     void Start()
     {
@@ -51,6 +53,8 @@ public class SightComponent : MonoBehaviour
         RaycastHit _hitPlayer, _hitObstacle;
         Color _debugColor = Color.white;
         float _range = 1f;
+        bool _wasPlayerHit = false;
+        PlayerInSight = false;
         for (int i = 0; i < viewAngle; ++i)
         {
             float _angle = (i - (viewAngle / 2f)) * Mathf.Deg2Rad;
@@ -65,10 +69,13 @@ public class SightComponent : MonoBehaviour
 
 
             if (!PlayerDetection(_playerInSight, _obstacleInSight, _hitPlayer, _hitObstacle, ref _debugColor,
-                ref _range))
+                ref _range, out bool _result))
                 ObstacleDetection(_obstacleInSight, _hitObstacle, ref _debugColor, ref _range);
 
             Debug.DrawRay(transform.position, _point * _range, _debugColor);
+
+            if(_result)
+                PlayerInSight = true;
         }
     }
 
@@ -86,21 +93,23 @@ public class SightComponent : MonoBehaviour
             isOscillationIncreasing = oscillation <= -1.0f;
     }
 
+    bool IsHidden(float _a, float _b) => _a > _b;
+
     bool PlayerDetection(bool _playerInSight, bool _obstacleInSight, RaycastHit _hitPlayer, RaycastHit _hitObstacle, 
-        ref Color _debugColor, ref float _range)
+        ref Color _debugColor, ref float _range, out bool _result)
     {
         if(_playerInSight)
         {
-            _debugColor = _obstacleInSight ? Color.yellow : Color.green;
-            _range = _obstacleInSight ? _hitObstacle.distance : _hitPlayer.distance;
+            Debug.Log($"PlayerInSight ");
+            bool _isHidden = _obstacleInSight && IsHidden(_hitPlayer.distance, _hitObstacle.distance);
+            _debugColor = _isHidden ? Color.yellow : Color.green;
+            _range = _isHidden ? _hitObstacle.distance : _hitPlayer.distance; 
+            _result = !_isHidden;
+            return true;
         }
-        //else
-        //{
-        //    _debugColor = _obstacleInSight ? Color.green : Color.red;
-        //    _range = _obstacleInSight ? _hitPlayer.distance : viewRange;
-        //}
 
-        return _playerInSight;
+        _result = false;
+        return false;
     }
 
     void ObstacleDetection(bool _obstacleInSight, RaycastHit _hitObstacle, ref Color _debugColor, ref float _range)
