@@ -20,6 +20,11 @@ public class SightComponent : MonoBehaviour
     [SerializeField]
     float oscillation = 0f;
 
+    [SerializeField, Range(0.1f, 10f)]
+    float maxRememberTime = 3f;
+
+    float currentRememberTime = 0f;
+
     [SerializeField, Range(0, 180)]
     int viewAngle = 90;
 
@@ -42,16 +47,19 @@ public class SightComponent : MonoBehaviour
     //    StartCoroutine(Sight());
     //}
 
-    void Update() => ExecuteSight();
+    void Update()
+    {
+        UpdateOscillation();
+        ExecuteSight();
+        UpdateRememberTime();
+    }
 
     void ExecuteSight()
     {
-        UpdateOscillation();
-
         RaycastHit _hitPlayer, _hitObstacle;
         Color _debugColor = Color.white;
         float _range = 1f;
-        PlayerInSight = false;
+
         for (int i = 0; i < viewAngle; ++i)
         {
             float _angle = (i - (viewAngle / 2f)) * Mathf.Deg2Rad;
@@ -72,7 +80,7 @@ public class SightComponent : MonoBehaviour
             Debug.DrawRay(transform.position, _point * _range, _debugColor);
 
             if(_result)
-                PlayerInSight = true;
+                currentRememberTime = maxRememberTime;
         }
     }
 
@@ -112,6 +120,13 @@ public class SightComponent : MonoBehaviour
     {
         _debugColor = _obstacleInSight ? Color.blue : Color.red;
         _range = _obstacleInSight ? _hitObstacle.distance : viewRange;
+    }
+
+    void UpdateRememberTime()
+    {
+        currentRememberTime -= Time.deltaTime;
+        currentRememberTime = currentRememberTime < 0f ? 0f : currentRememberTime;
+        PlayerInSight = currentRememberTime != 0f;
     }
 
     private void OnDrawGizmos()
