@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
 {
     MeshFilter meshFilter = null;
 
-    public MeshFilter MeshFilter => meshFilter;
+    public Mesh Mesh => meshFilter ? meshFilter.mesh : null;
 
     // Start is called before the first frame update
     void Start()
