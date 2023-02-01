@@ -4,6 +4,14 @@ public abstract class FSM : MonoBehaviour
 {
     protected State currentState = null;
 
+    void Start() => InitFSM();
+
+    void Update() => UpdateFSM();
+
+    void OnDestroy() => StopFSM();
+
+    void OnDrawGizmos() => currentState?.DebugState();
+
     protected abstract void InitFSM();
 
     protected virtual void UpdateFSM()
