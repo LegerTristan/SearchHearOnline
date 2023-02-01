@@ -36,5 +36,7 @@ public class HearComponent : MonoBehaviour
         lastSoundPos = _heard.position;
         hearSound = true;
         rememberTime = maxRememberTime;
+        Debug.Log("cocou");
+        Debug.Log(lastSoundPos);
     }
 }

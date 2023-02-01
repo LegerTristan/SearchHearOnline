@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapClip: {fileID: 8300000, guid: 882c1626874f6e9419df1c87053bf97c, type: 3}
   trapSphere: {fileID: 1990500886}
-  maxSoundRange: 25
+  maxSoundRange: 100
   soundDecreaseSpeed: 1.5
   clipVolume: 1
 --- !u!33 &4285602461218037136

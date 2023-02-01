@@ -15,24 +15,24 @@ public class SearchPhaseComponent : MonoBehaviour
 
     private void Update()
     {
- 
+
     }
 
     public void InscreasePhase()
     {
         currentPhase++;
-        if(currentPhase >= allPhases.Count)
+        if (currentPhase >= allPhases.Count)
         {
             currentPhase = 0;
             lastPlayerPosition = saveFirstPosition;
         }
-        
+
     }
 
     public void DecreasePhase()
     {
         currentPhase--;
-        if(currentPhase <0)
+        if (currentPhase < 0)
         {
             currentPhase = 0;
 
@@ -51,7 +51,7 @@ public class SearchPhaseComponent : MonoBehaviour
 
     public void SetTargetMoveTo()
     {
-       MoveComponent _move = GetComponent<MoveComponent>();
+        MoveComponent _move = GetComponent<MoveComponent>();
         _move.SetTarget(GetPosition(), allPhases[currentPhase].Speed);
     }
 
@@ -68,13 +68,18 @@ public class SearchPhaseComponent : MonoBehaviour
 
     Vector3 GenerateRandomPointInCircle()
     {
+        Vector3 _res = Vector3.zero;
+        //do
+        //{
             float _angle = Random.Range(0, 360);
             Debug.Log(_angle);
             float _x = Mathf.Cos(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
             float _y = Mathf.Sin(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
-            test = lastPlayerPosition + new Vector3(_x, 0, _y);
+            _res = lastPlayerPosition + new Vector3(_x, 0, _y);
+       // } while (true);
+        test = _res;
         Debug.Log(test);
-        return lastPlayerPosition + new Vector3(_x, 0, _y);
+        return _res;
     }
 
     private void OnDrawGizmos()
@@ -86,11 +91,11 @@ public class SearchPhaseComponent : MonoBehaviour
             return;
         for (int i = 0; i < 360; i += _seg)
         {
-            
+
             float _x = Mathf.Cos(i * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
             float _y = Mathf.Sin(i * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
-            float _x2 = Mathf.Cos((i+_seg) * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
-            float _y2 = Mathf.Sin((i+_seg) * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
+            float _x2 = Mathf.Cos((i + _seg) * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
+            float _y2 = Mathf.Sin((i + _seg) * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
             Vector3 _draw = lastPlayerPosition + new Vector3(_x, 0, _y);
             Vector3 _draw2 = lastPlayerPosition + new Vector3(_x2, 0, _y2);
             Gizmos.DrawLine(_draw, _draw2);

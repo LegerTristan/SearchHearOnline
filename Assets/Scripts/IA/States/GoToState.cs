@@ -9,6 +9,14 @@ public class GoToState : State
     {
         Debug.Log("init GOtO");
         SearchPhaseComponent _search = owner.GetComponent<SearchPhaseComponent>();
+        MoveComponent _move = owner.GetComponent<MoveComponent>();
+        HearComponent _hear = owner.GetComponent<HearComponent>();
+
+        if(_hear.HearSound)
+        {
+            _search.SetLastPosition(_hear.LastSoundPos);
+            _search.ResetPhases();
+        }
         _search.InscreasePhase();
         _search.SetTargetMoveTo();
         GoToPositionToSearchTransition _transi = new GoToPositionToSearchTransition(owner);

@@ -53,9 +53,9 @@ public class HearTrap : MonoBehaviour
         if (!IsTrapValid)
             return;
 
-        HearComponent _hearCompA = _other.gameObject.GetComponent<HearComponent>();
+        Player _player = _other.gameObject.GetComponent<Player>();
 
-        if (!soundWasPlayed)
+        if (!soundWasPlayed && _player)
         {
             PlaySoundTrap();
             return;
