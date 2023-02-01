@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class Obstacle : MonoBehaviour
 {
+    MeshFilter meshFilter = null;
+
+    public Mesh Mesh => meshFilter ? meshFilter.mesh : null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +17,7 @@ public class Obstacle : MonoBehaviour
 
     void Init()
     {
+        meshFilter = GetComponent<MeshFilter>();
         ObstacleManager.Instance?.RegisterObstacle(this);
     }
 
