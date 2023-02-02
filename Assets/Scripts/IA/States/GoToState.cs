@@ -9,7 +9,6 @@ public class GoToState : State
     SearchPhaseComponent searchPhaseComponent;
     protected override void InitTransitions()
     {
-        Debug.Log("init GOtO");
         searchPhaseComponent = owner.GetComponent<SearchPhaseComponent>();
         MoveComponent _move = owner.GetComponent<MoveComponent>();
         hearComponent = owner.GetComponent<HearComponent>();
