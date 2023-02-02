@@ -72,13 +72,11 @@ public class SearchPhaseComponent : MonoBehaviour
         do
         {
             float _angle = Random.Range(0, 360);
-            Debug.Log(_angle);
             float _x = Mathf.Cos(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
             float _y = Mathf.Sin(_angle * Mathf.Deg2Rad) * allPhases[currentPhase].Radius;
             _res = lastPlayerPosition + new Vector3(_x, 0, _y);
         } while (ObstacleManager.Instance.IsLocationInObstacle(_res));
         test = _res;
-        Debug.Log(test);
         return _res;
     }
 

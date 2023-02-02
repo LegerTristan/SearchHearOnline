@@ -18,9 +18,6 @@ public class Obstacle : MonoBehaviour
     void Init()
     {
         meshFilter = GetComponent<MeshFilter>();
-        Debug.Log(meshFilter);
-        Debug.Log(ObstacleManager.Instance);
-        Debug.Log(this);
         ObstacleManager.Instance?.RegisterObstacle(this);
     }
 
