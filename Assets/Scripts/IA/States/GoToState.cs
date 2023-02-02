@@ -5,20 +5,22 @@ using UnityEngine;
 public class GoToState : State
 {
 
+    HearComponent hearComponent;
+    SearchPhaseComponent searchPhaseComponent;
     protected override void InitTransitions()
     {
         Debug.Log("init GOtO");
-        SearchPhaseComponent _search = owner.GetComponent<SearchPhaseComponent>();
+        searchPhaseComponent = owner.GetComponent<SearchPhaseComponent>();
         MoveComponent _move = owner.GetComponent<MoveComponent>();
-        HearComponent _hear = owner.GetComponent<HearComponent>();
+        hearComponent = owner.GetComponent<HearComponent>();
 
-        if(_hear.HearSound)
+        if(hearComponent.HearSound)
         {
-            _search.SetLastPosition(_hear.LastSoundPos);
-            _search.ResetPhases();
+            searchPhaseComponent.SetLastPosition(hearComponent.LastSoundPos);
+            searchPhaseComponent.ResetPhases();
         }
-        _search.InscreasePhase();
-        _search.SetTargetMoveTo();
+        searchPhaseComponent.InscreasePhase();
+        searchPhaseComponent.SetTargetMoveTo();
         GoToPositionToSearchTransition _transi = new GoToPositionToSearchTransition(owner);
         SearchToChaseTransition _chaseTransi = new SearchToChaseTransition(owner);
         transitions.Add(_chaseTransi);
@@ -37,5 +39,25 @@ public class GoToState : State
     public override void Exit()
     {
 
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        CheckSound();
+    }
+
+
+    void CheckSound()
+    {
+        if (!hearComponent)
+            return;
+        if(hearComponent.HearSound)
+        {
+            searchPhaseComponent.SetLastPosition(hearComponent.LastSoundPos);
+            searchPhaseComponent.ResetPhases();
+            searchPhaseComponent.InscreasePhase();
+            searchPhaseComponent.SetTargetMoveTo();
+        }
     }
 }

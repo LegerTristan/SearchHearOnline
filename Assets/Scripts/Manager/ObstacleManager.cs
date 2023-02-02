@@ -7,7 +7,7 @@ public class ObstacleManager : SingletonTemplate<ObstacleManager>
     [SerializeField] LayerMask obstacleMask;
 
 
-    List<Obstacle> obstacles;
+    List<Obstacle> obstacles = new List<Obstacle>();
     public List<Obstacle> Obstacles => obstacles;
 
     public LayerMask ObstacleMask => obstacleMask;
