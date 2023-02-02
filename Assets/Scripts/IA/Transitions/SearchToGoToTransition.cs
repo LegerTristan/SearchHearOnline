@@ -4,7 +4,7 @@ public class SearchToGoToTransition : Transition
 {
     HearComponent hearComp = null;
 
-    float waitTime = 15f, currentTime = 0f;
+    float waitTime = 3f, currentTime = 0f;
 
     public SearchToGoToTransition(FSM _owner) : base(_owner)
     {

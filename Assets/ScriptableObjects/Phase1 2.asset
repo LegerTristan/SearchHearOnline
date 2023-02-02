@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Phase1 2
   m_EditorClassIdentifier: 
   speed: 10
-  radius: 2
+  radius: 5

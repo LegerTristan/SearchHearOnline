@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ee6b7da67fa8d4080f1cd0d08f823f, type: 3}
   m_Name: Phase1
   m_EditorClassIdentifier: 
-  speed: 1
-  radius: 10
+  speed: 3
+  radius: 15

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4890213714719095701}
+  - component: {fileID: 113962750}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -23,14 +24,39 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2672599044050980687}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.00014875233, y: 0.01385, z: 0.0007}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7040568133493949689}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &113962750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672599044050980687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74da29223167a0f40a0657be046780f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  viewRefreshRate: 1
+  viewRange: 5
+  oscillation: -1
+  maxRememberTime: 3
+  viewAngle: 90
+  oscillate: 1
+  isOscillationIncreasing: 1
 --- !u!1 &5819290647633874059
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +532,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7040568133493949689}
+  - component: {fileID: 1197276597}
+  - component: {fileID: 1197276592}
+  - component: {fileID: 1197276593}
+  - component: {fileID: 1197276594}
+  - component: {fileID: 1197276596}
   m_Layer: 0
   m_Name: Asuna
   m_TagString: Untagged
@@ -532,6 +563,77 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1197276597
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040568133493949688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.003
+  m_Height: 0.016
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.008, z: 0}
+--- !u!114 &1197276592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040568133493949688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7282058f244c7f345aad63ce0ef8504e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sight: {fileID: 113962750}
+--- !u!114 &1197276593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040568133493949688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122bf6118902ed64a840408b6a50d89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  allPhases:
+  - {fileID: 11400000, guid: 405b0dcd7ff496046b56570deefaa4fe, type: 2}
+  - {fileID: 11400000, guid: 0fe795fd5b64e9047b0388e0725b7800, type: 2}
+  - {fileID: 11400000, guid: 751e9d8b50ff2f84bb8913908dea7975, type: 2}
+--- !u!114 &1197276594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040568133493949688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f922bde628b6a940bea6b808ad483d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7040568134514713476}
+--- !u!114 &1197276596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040568133493949688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393690c603dc74545b179096f6b8e880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRememberTime: 3
+  rememberTime: 0
 --- !u!1 &7622697104284955725
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class MoveComponent : MonoBehaviour
     [SerializeField] Animator animator;
 
     Vector3 target = Vector3.zero;
-    int speed = 0;
+    [SerializeField] int speed = 0;
     bool asATarget = false;
     bool isAtDestination = false;
 
