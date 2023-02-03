@@ -52,11 +52,11 @@ MonoBehaviour:
     m_Bits: 128
   viewRefreshRate: 1
   viewRange: 5
-  oscillation: -1
+  oscillation: 0.09189808
   maxRememberTime: 3
   viewAngle: 90
   oscillate: 1
-  isOscillationIncreasing: 1
+  isOscillationIncreasing: 0
 --- !u!1 &5819290647633874059
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7040568134514713476}
+  speed: 0
 --- !u!114 &1197276596
 MonoBehaviour:
   m_ObjectHideFlags: 0
